@@ -1,0 +1,6 @@
+framework module KKOpenSSL_iOS {
+  umbrella header "KKOpenSSL_iOS.h"
+
+  export *
+  module * { export * }
+}
