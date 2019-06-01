@@ -1,70 +1,43 @@
 #!/bin/sh
-
-#  build-framework-ios.sh
-#  OpenSSL-iOS
-#
-#  Created by Josip Cavar on 15/07/16.
-#  Modifications by @levigroker
-#  Copyright © 2016 krzyzanowskim. All rights reserved.
-
-
-set -e
-set +u
-# Avoid recursively calling this script.
-if [[ $SF_MASTER_SCRIPT_RUNNING ]] ; then
-	exit 0
+#要build的target名(若一个工程有多个target，最好手动指定需要打包的目标，如TARGET_NAME="framework名")
+TARGET_NAME=${PROJECT_NAME}
+if [[ $1 ]]
+then
+TARGET_NAME=$1
 fi
-set -u
-export SF_MASTER_SCRIPT_RUNNING=1
+UNIVERSAL_OUTPUT_FOLDER="${SRCROOT}/Products/"
 
-DEBUG=${DEBUG:-0}
-export DEBUG
-[ $DEBUG -ne 0 ] && set -x
+#创建输出目录，并删除之前的framework文件
+mkdir -p "${UNIVERSAL_OUTPUT_FOLDER}"
+rm -rf "${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework"
 
-# Fully qualified binaries (_B suffix to prevent collisions)
-RM_B="/bin/rm"
-CP_B="/bin/cp"
-MKDIR_B="/bin/mkdir"
-LIPO_B="/usr/bin/lipo"
+#分别编译模拟器和真机的Framework
+xcodebuild -target "${TARGET_NAME}" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos BUILD_DIR="${BUILD_DIR}" BUILD_ROOT="${BUILD_ROOT}" clean build
+xcodebuild -target "${TARGET_NAME}" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphonesimulator BUILD_DIR="${BUILD_DIR}" BUILD_ROOT="${BUILD_ROOT}" clean build
 
-# Constants
-UNIVERSAL_OUTPUTFOLDER=${SRCROOT}/bin
+#拷贝framework到univer目录
+cp -R "${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework" "${UNIVERSAL_OUTPUT_FOLDER}"
 
-# Take build target
-if [[ "$SDK_NAME" =~ ([A-Za-z]+) ]] ; then
-	SF_SDK_PLATFORM=${BASH_REMATCH[1]}
-else
-	echo "Could not find platform name from SDK_NAME: $SDK_NAME"
-	exit 1
+#合并framework，输出最终的framework到build目录
+lipo -create -output "${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework/${TARGET_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${TARGET_NAME}.framework/${TARGET_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphoneos/${TARGET_NAME}.framework/${TARGET_NAME}"
+
+#删除编译之后生成的无关的配置文件
+dir_path="${UNIVERSAL_OUTPUT_FOLDER}/${TARGET_NAME}.framework/"
+for file in ls $dir_path
+do
+if [[ ${file} =~ ".xcconfig" ]]
+then
+rm -f "${dir_path}/${file}"
 fi
+done
 
-if [[ "$SF_SDK_PLATFORM" != "iphoneos" ]] ; then
-	echo "Please choose iPhone device as the build target."
-	exit 1
+#判断build文件夹是否存在，存在则删除
+if [ -d "${SRCROOT}/build" ]
+then
+rm -rf "${SRCROOT}/build"
 fi
 
-IPHONE_SIMULATOR_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator
-IPHONE_DEVICE_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos
+rm -rf "${BUILD_DIR}/${CONFIGURATION}-iphonesimulator" "${BUILD_DIR}/${CONFIGURATION}-iphoneos"
 
-echo "building simulator archs"
-xcodebuild -project "${PROJECT_FILE_PATH}" -target "${TARGET_NAME}" -configuration "${CONFIGURATION}" -sdk iphonesimulator BUILD_DIR="${BUILD_DIR}" OBJROOT="${OBJROOT}" BUILD_ROOT="${BUILD_ROOT}" CONFIGURATION_BUILD_DIR="${IPHONE_SIMULATOR_BUILD_DIR}" SYMROOT="${SYMROOT}" ARCHS='i386 x86_64' VALID_ARCHS='i386 x86_64' $ACTION
-
-# Copy the framework structure to the universal folder (clean it first)
-$RM_B -rf "${UNIVERSAL_OUTPUTFOLDER}"
-$MKDIR_B -p "${UNIVERSAL_OUTPUTFOLDER}"
-$CP_B -R "${IPHONE_DEVICE_BUILD_DIR}/${PRODUCT_NAME}.framework" "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework"
-# (we will perform the `post-build.sh` in the Scheme's Build Post-action script to copy
-# the moudulemap, which is only present after the build completes).
-
-
-# Build the other (non-simulator) platform
-
-echo "building arm64"
-xcodebuild -project "${PROJECT_FILE_PATH}" -target "${TARGET_NAME}" -configuration "${CONFIGURATION}" -sdk iphoneos BUILD_DIR="${BUILD_DIR}" OBJROOT="${OBJROOT}" BUILD_ROOT="${BUILD_ROOT}" CONFIGURATION_BUILD_DIR="${IPHONE_DEVICE_BUILD_DIR}/arm64" SYMROOT="${SYMROOT}" ENABLE_BITCODE=YES BITCODE_GENERATION_MODE=bitcode ARCHS='arm64' VALID_ARCHS='arm64' $ACTION
-
-echo "building armv7 armv7s"
-xcodebuild -project "${PROJECT_FILE_PATH}" -target "${TARGET_NAME}" -configuration "${CONFIGURATION}" -sdk iphoneos BUILD_DIR="${BUILD_DIR}" OBJROOT="${OBJROOT}" BUILD_ROOT="${BUILD_ROOT}"  CONFIGURATION_BUILD_DIR="${IPHONE_DEVICE_BUILD_DIR}/armv7" SYMROOT="${SYMROOT}" ENABLE_BITCODE=YES BITCODE_GENERATION_MODE=bitcode ARCHS='armv7 armv7s' VALID_ARCHS='armv7 armv7s' $ACTION
-
-# Smash them together to combine all architectures
-echo "smashing together"
-$LIPO_B -create  "${IPHONE_DEVICE_BUILD_DIR}/arm64/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${IPHONE_DEVICE_BUILD_DIR}/armv7/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${IPHONE_SIMULATOR_BUILD_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" -output "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}"
+#打开合并后的文件夹
+open "${UNIVERSAL_OUTPUT_FOLDER}"
