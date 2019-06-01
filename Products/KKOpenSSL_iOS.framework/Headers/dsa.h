@@ -65,22 +65,22 @@
 #ifndef HEADER_DSA_H
 # define HEADER_DSA_H
 
-# include <openssl/e_os2.h>
+# include <KKOpenSSL_iOS/e_os2.h>
 
 # ifdef OPENSSL_NO_DSA
 #  error DSA is disabled.
 # endif
 
 # ifndef OPENSSL_NO_BIO
-#  include <openssl/bio.h>
+#  include <KKOpenSSL_iOS/bio.h>
 # endif
-# include <openssl/crypto.h>
-# include <openssl/ossl_typ.h>
+# include <KKOpenSSL_iOS/crypto.h>
+# include <KKOpenSSL_iOS/ossl_typ.h>
 
 # ifndef OPENSSL_NO_DEPRECATED
-#  include <openssl/bn.h>
+#  include <KKOpenSSL_iOS/bn.h>
 #  ifndef OPENSSL_NO_DH
-#   include <openssl/dh.h>
+#   include <KKOpenSSL_iOS/dh.h>
 #  endif
 # endif
 

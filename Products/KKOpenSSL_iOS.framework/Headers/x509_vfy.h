@@ -57,9 +57,9 @@
  */
 
 #ifndef HEADER_X509_H
-# include <openssl/x509.h>
+# include <KKOpenSSL_iOS/x509.h>
 /*
- * openssl/x509.h ends up #include-ing this file at about the only
+ * KKOpenSSL_iOS/x509.h ends up #include-ing this file at about the only
  * appropriate moment.
  */
 #endif
@@ -67,13 +67,13 @@
 #ifndef HEADER_X509_VFY_H
 # define HEADER_X509_VFY_H
 
-# include <openssl/opensslconf.h>
+# include <KKOpenSSL_iOS/opensslconf.h>
 # ifndef OPENSSL_NO_LHASH
-#  include <openssl/lhash.h>
+#  include <KKOpenSSL_iOS/lhash.h>
 # endif
-# include <openssl/bio.h>
-# include <openssl/crypto.h>
-# include <openssl/symhacks.h>
+# include <KKOpenSSL_iOS/bio.h>
+# include <KKOpenSSL_iOS/crypto.h>
+# include <KKOpenSSL_iOS/symhacks.h>
 
 #ifdef  __cplusplus
 extern "C" {

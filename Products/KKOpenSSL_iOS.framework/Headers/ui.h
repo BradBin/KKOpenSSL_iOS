@@ -61,10 +61,10 @@
 # define HEADER_UI_H
 
 # ifndef OPENSSL_NO_DEPRECATED
-#  include <openssl/crypto.h>
+#  include <KKOpenSSL_iOS/crypto.h>
 # endif
-# include <openssl/safestack.h>
-# include <openssl/ossl_typ.h>
+# include <KKOpenSSL_iOS/safestack.h>
+# include <KKOpenSSL_iOS/ossl_typ.h>
 
 #ifdef  __cplusplus
 extern "C" {

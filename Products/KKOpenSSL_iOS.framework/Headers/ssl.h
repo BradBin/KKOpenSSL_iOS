@@ -143,28 +143,28 @@
 #ifndef HEADER_SSL_H
 # define HEADER_SSL_H
 
-# include <openssl/e_os2.h>
+# include <KKOpenSSL_iOS/e_os2.h>
 
 # ifndef OPENSSL_NO_COMP
-#  include <openssl/comp.h>
+#  include <KKOpenSSL_iOS/comp.h>
 # endif
 # ifndef OPENSSL_NO_BIO
-#  include <openssl/bio.h>
+#  include <KKOpenSSL_iOS/bio.h>
 # endif
 # ifndef OPENSSL_NO_DEPRECATED
 #  ifndef OPENSSL_NO_X509
-#   include <openssl/x509.h>
+#   include <KKOpenSSL_iOS/x509.h>
 #  endif
-#  include <openssl/crypto.h>
-#  include <openssl/lhash.h>
-#  include <openssl/buffer.h>
+#  include <KKOpenSSL_iOS/crypto.h>
+#  include <KKOpenSSL_iOS/lhash.h>
+#  include <KKOpenSSL_iOS/buffer.h>
 # endif
-# include <openssl/pem.h>
-# include <openssl/hmac.h>
+# include <KKOpenSSL_iOS/pem.h>
+# include <KKOpenSSL_iOS/hmac.h>
 
-# include <openssl/kssl.h>
-# include <openssl/safestack.h>
-# include <openssl/symhacks.h>
+# include <KKOpenSSL_iOS/kssl.h>
+# include <KKOpenSSL_iOS/safestack.h>
+# include <KKOpenSSL_iOS/symhacks.h>
 
 #ifdef  __cplusplus
 extern "C" {
@@ -1693,12 +1693,12 @@ struct ssl_st {
 }
 #endif
 
-# include <openssl/ssl2.h>
-# include <openssl/ssl3.h>
-# include <openssl/tls1.h>      /* This is mostly sslv3 with a few tweaks */
-# include <openssl/dtls1.h>     /* Datagram TLS */
-# include <openssl/ssl23.h>
-# include <openssl/srtp.h>      /* Support for the use_srtp extension */
+# include <KKOpenSSL_iOS/ssl2.h>
+# include <KKOpenSSL_iOS/ssl3.h>
+# include <KKOpenSSL_iOS/tls1.h>      /* This is mostly sslv3 with a few tweaks */
+# include <KKOpenSSL_iOS/dtls1.h>     /* Datagram TLS */
+# include <KKOpenSSL_iOS/ssl23.h>
+# include <KKOpenSSL_iOS/srtp.h>      /* Support for the use_srtp extension */
 
 #ifdef  __cplusplus
 extern "C" {

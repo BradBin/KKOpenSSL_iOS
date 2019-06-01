@@ -60,18 +60,18 @@
 # define HEADER_ASN1_H
 
 # include <time.h>
-# include <openssl/e_os2.h>
+# include <KKOpenSSL_iOS/e_os2.h>
 # ifndef OPENSSL_NO_BIO
-#  include <openssl/bio.h>
+#  include <KKOpenSSL_iOS/bio.h>
 # endif
-# include <openssl/stack.h>
-# include <openssl/safestack.h>
+# include <KKOpenSSL_iOS/stack.h>
+# include <KKOpenSSL_iOS/safestack.h>
 
-# include <openssl/symhacks.h>
+# include <KKOpenSSL_iOS/symhacks.h>
 
-# include <openssl/ossl_typ.h>
+# include <KKOpenSSL_iOS/ossl_typ.h>
 # ifndef OPENSSL_NO_DEPRECATED
-#  include <openssl/bn.h>
+#  include <KKOpenSSL_iOS/bn.h>
 # endif
 
 # ifdef OPENSSL_BUILD_SHLIBCRYPTO

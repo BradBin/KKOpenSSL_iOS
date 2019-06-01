@@ -76,16 +76,16 @@
 #ifndef HEADER_EC_H
 # define HEADER_EC_H
 
-# include <openssl/opensslconf.h>
+# include <KKOpenSSL_iOS/opensslconf.h>
 
 # ifdef OPENSSL_NO_EC
 #  error EC is disabled.
 # endif
 
-# include <openssl/asn1.h>
-# include <openssl/symhacks.h>
+# include <KKOpenSSL_iOS/asn1.h>
+# include <KKOpenSSL_iOS/symhacks.h>
 # ifndef OPENSSL_NO_DEPRECATED
-#  include <openssl/bn.h>
+#  include <KKOpenSSL_iOS/bn.h>
 # endif
 
 # ifdef  __cplusplus

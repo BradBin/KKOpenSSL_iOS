@@ -122,6 +122,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AA4F0A522A2E9580034B046 /* openssl-build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "openssl-build.sh"; sourceTree = "<group>"; };
 		0AD98AAA22A0354700E71583 /* KKOpenSSL_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KKOpenSSL_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD98AAD22A0354700E71583 /* KKOpenSSL_iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KKOpenSSL_iOS.h; sourceTree = "<group>"; };
 		0AD98AAE22A0354700E71583 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -250,6 +251,7 @@
 		0AD98AAC22A0354700E71583 /* KKOpenSSL_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				0AA4F0A522A2E9580034B046 /* openssl-build.sh */,
 				0AD98BFE22A03A8800E71583 /* build-framework-ios.sh */,
 				0AD98B6022A0369100E71583 /* openssl */,
 				0AD98AC422A0366000E71583 /* lib */,

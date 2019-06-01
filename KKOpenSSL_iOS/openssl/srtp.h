@@ -117,7 +117,7 @@
 #ifndef HEADER_D1_SRTP_H
 # define HEADER_D1_SRTP_H
 
-# include <openssl/ssl.h>
+# include <KKOpenSSL_iOS/ssl.h>
 
 #ifdef  __cplusplus
 extern "C" {

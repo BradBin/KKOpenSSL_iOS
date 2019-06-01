@@ -59,8 +59,8 @@
 #ifndef  HEADER_CONF_API_H
 # define HEADER_CONF_API_H
 
-# include <openssl/lhash.h>
-# include <openssl/conf.h>
+# include <KKOpenSSL_iOS/lhash.h>
+# include <KKOpenSSL_iOS/conf.h>
 
 #ifdef  __cplusplus
 extern "C" {

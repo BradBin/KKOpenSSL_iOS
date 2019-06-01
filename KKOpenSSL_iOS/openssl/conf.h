@@ -59,13 +59,13 @@
 #ifndef  HEADER_CONF_H
 # define HEADER_CONF_H
 
-# include <openssl/bio.h>
-# include <openssl/lhash.h>
-# include <openssl/stack.h>
-# include <openssl/safestack.h>
-# include <openssl/e_os2.h>
+# include <KKOpenSSL_iOS/bio.h>
+# include <KKOpenSSL_iOS/lhash.h>
+# include <KKOpenSSL_iOS/stack.h>
+# include <KKOpenSSL_iOS/safestack.h>
+# include <KKOpenSSL_iOS/e_os2.h>
 
-# include <openssl/ossl_typ.h>
+# include <KKOpenSSL_iOS/ossl_typ.h>
 
 #ifdef  __cplusplus
 extern "C" {

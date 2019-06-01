@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <KKOpenSSL_iOS/KKOpenSSL_iOS.h>
 
 @interface KKOpenSSL_iOSTests : XCTestCase
 

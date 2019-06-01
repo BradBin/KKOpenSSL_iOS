@@ -60,31 +60,31 @@
 #ifndef HEADER_TS_H
 # define HEADER_TS_H
 
-# include <openssl/opensslconf.h>
-# include <openssl/symhacks.h>
+# include <KKOpenSSL_iOS/opensslconf.h>
+# include <KKOpenSSL_iOS/symhacks.h>
 # ifndef OPENSSL_NO_BUFFER
-#  include <openssl/buffer.h>
+#  include <KKOpenSSL_iOS/buffer.h>
 # endif
 # ifndef OPENSSL_NO_EVP
-#  include <openssl/evp.h>
+#  include <KKOpenSSL_iOS/evp.h>
 # endif
 # ifndef OPENSSL_NO_BIO
-#  include <openssl/bio.h>
+#  include <KKOpenSSL_iOS/bio.h>
 # endif
-# include <openssl/stack.h>
-# include <openssl/asn1.h>
-# include <openssl/safestack.h>
+# include <KKOpenSSL_iOS/stack.h>
+# include <KKOpenSSL_iOS/asn1.h>
+# include <KKOpenSSL_iOS/safestack.h>
 
 # ifndef OPENSSL_NO_RSA
-#  include <openssl/rsa.h>
+#  include <KKOpenSSL_iOS/rsa.h>
 # endif
 
 # ifndef OPENSSL_NO_DSA
-#  include <openssl/dsa.h>
+#  include <KKOpenSSL_iOS/dsa.h>
 # endif
 
 # ifndef OPENSSL_NO_DH
-#  include <openssl/dh.h>
+#  include <KKOpenSSL_iOS/dh.h>
 # endif
 
 #ifdef  __cplusplus
@@ -96,8 +96,8 @@ extern "C" {
 #  undef X509_NAME
 # endif
 
-# include <openssl/x509.h>
-# include <openssl/x509v3.h>
+# include <KKOpenSSL_iOS/x509.h>
+# include <KKOpenSSL_iOS/x509v3.h>
 
 /*-
 MessageImprint ::= SEQUENCE  {

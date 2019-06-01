@@ -1,4 +1,4 @@
-/* openssl/engine.h */
+/* KKOpenSSL_iOS/engine.h */
 /*
  * Written by Geoff Thorpe (geoff@geoffthorpe.net) for the OpenSSL project
  * 2000.
@@ -65,38 +65,38 @@
 #ifndef HEADER_ENGINE_H
 # define HEADER_ENGINE_H
 
-# include <openssl/opensslconf.h>
+# include <KKOpenSSL_iOS/opensslconf.h>
 
 # ifdef OPENSSL_NO_ENGINE
 #  error ENGINE is disabled.
 # endif
 
 # ifndef OPENSSL_NO_DEPRECATED
-#  include <openssl/bn.h>
+#  include <KKOpenSSL_iOS/bn.h>
 #  ifndef OPENSSL_NO_RSA
-#   include <openssl/rsa.h>
+#   include <KKOpenSSL_iOS/rsa.h>
 #  endif
 #  ifndef OPENSSL_NO_DSA
-#   include <openssl/dsa.h>
+#   include <KKOpenSSL_iOS/dsa.h>
 #  endif
 #  ifndef OPENSSL_NO_DH
-#   include <openssl/dh.h>
+#   include <KKOpenSSL_iOS/dh.h>
 #  endif
 #  ifndef OPENSSL_NO_ECDH
-#   include <openssl/ecdh.h>
+#   include <KKOpenSSL_iOS/ecdh.h>
 #  endif
 #  ifndef OPENSSL_NO_ECDSA
-#   include <openssl/ecdsa.h>
+#   include <KKOpenSSL_iOS/ecdsa.h>
 #  endif
-#  include <openssl/rand.h>
-#  include <openssl/ui.h>
-#  include <openssl/err.h>
+#  include <KKOpenSSL_iOS/rand.h>
+#  include <KKOpenSSL_iOS/ui.h>
+#  include <KKOpenSSL_iOS/err.h>
 # endif
 
-# include <openssl/ossl_typ.h>
-# include <openssl/symhacks.h>
+# include <KKOpenSSL_iOS/ossl_typ.h>
+# include <KKOpenSSL_iOS/symhacks.h>
 
-# include <openssl/x509.h>
+# include <KKOpenSSL_iOS/x509.h>
 
 #ifdef  __cplusplus
 extern "C" {
